@@ -80,14 +80,14 @@ export function Quiz({
               第 {currentQuestionIndex + 1} 題 / 共 {questions.length} 題
             </span>
             <div className="progress-bar">
-              <div 
+              <div
                 className="progress-fill"
                 style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
               />
             </div>
           </div>
         </div>
-        
+
         <LanguageSwitcher
           currentLanguage={settings.language}
           onLanguageChange={(language) => onSettingsChange({ language })}
@@ -98,6 +98,35 @@ export function Quiz({
         settings={settings}
         onSettingsChange={onSettingsChange}
       />
+
+      <div className="quiz-navigation">
+        <button
+          className="nav-btn prev-btn"
+          onClick={onPreviousQuestion}
+          disabled={currentQuestionIndex === 0}
+        >
+          上一題
+        </button>
+
+        {shouldShowAnswer && (
+          <div className="answer-actions">
+            <button
+              className="continue-btn"
+              onClick={onNextQuestion}
+            >
+              繼續下一題
+            </button>
+          </div>
+        )}
+
+        <button
+          className="nav-btn next-btn"
+          onClick={onNextQuestion}
+          disabled={currentQuestionIndex === questions.length - 1}
+        >
+          下一題
+        </button>
+      </div>
 
       {currentQuestion && currentQuestionContent && (
         <Question
@@ -111,50 +140,22 @@ export function Quiz({
         />
       )}
 
-      <div className="quiz-navigation">
-        <button
-          className="nav-btn prev-btn"
-          onClick={onPreviousQuestion}
-          disabled={currentQuestionIndex === 0}
-        >
-          上一題
-        </button>
-        
-        <div className="question-jump">
-          {questions.map((_, index) => (
-            <button
-              key={index}
-              className={`jump-btn ${index === currentQuestionIndex ? 'active' : ''} ${
-                userAnswers.find(answer => answer.questionNo === questions[index].question_no) 
-                  ? 'answered' 
-                  : ''
-              }`}
-              onClick={() => onGoToQuestion(index)}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div>
 
-        <button
-          className="nav-btn next-btn"
-          onClick={onNextQuestion}
-          disabled={currentQuestionIndex === questions.length - 1}
-        >
-          下一題
-        </button>
-      </div>
-
-      {shouldShowAnswer && (
-        <div className="answer-actions">
+      <div className="question-jump">
+        {questions.map((_, index) => (
           <button
-            className="continue-btn"
-            onClick={onNextQuestion}
+            key={index}
+            className={`jump-btn ${index === currentQuestionIndex ? 'active' : ''} ${userAnswers.find(answer => answer.questionNo === questions[index].question_no)
+                ? 'answered'
+                : ''
+              }`}
+            onClick={() => onGoToQuestion(index)}
           >
-            繼續下一題
+            {/* {questions[index].question_no} */}
+            {index + 1}
           </button>
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 } 

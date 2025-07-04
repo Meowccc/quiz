@@ -22,6 +22,16 @@ export function useQuiz() {
 
   // 載入題目並隨機排序
   const loadQuestions = useCallback((newQuestions: QuizQuestion[]) => {
+    console.log('loadQuestions: ', newQuestions);
+
+    // question no 減1為index, 如果下一個question No 為空則給予空物件
+    // const processedQuestions = newQuestions.map((question, index) => {
+    //   if (index === newQuestions.length - 1) {
+    //     return { ...question, question_no: '' };
+    //   }
+    //   return question;
+    // });
+
     const processedQuestions = settings.randomOrder 
       ? shuffle(newQuestions)
       : newQuestions;

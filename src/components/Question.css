@@ -6,6 +6,47 @@
   margin-bottom: 1.5rem;
 }
 
+@media (max-width: 600px) {
+  .question-container {
+    padding: 0.75rem 0.5rem;
+    border-radius: 8px;
+  }
+  .question-header {
+    gap: 6px;
+    margin-bottom: 1rem;
+  }
+  .question-number {
+    font-size: 1rem;
+  }
+  .multiple-choice-hint {
+    font-size: 0.8rem;
+  }
+  .question-text {
+    font-size: 1rem;
+  }
+  .options-container {
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+  .option {
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+  .option-label {
+    min-width: 18px;
+    font-size: 0.95rem;
+  }
+  .submit-btn {
+    padding: 8px 18px;
+    font-size: 0.95rem;
+  }
+  .answer-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+}
+
 .question-header {
   display: flex;
   align-items: center;
