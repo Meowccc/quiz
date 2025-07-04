@@ -1,0 +1,79 @@
+.quiz-uploader {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.upload-container {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.upload-container h2 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.upload-container p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.file-input-wrapper {
+  margin-bottom: 2rem;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-input-label {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.file-input-label:hover {
+  background: #0056b3;
+}
+
+.file-input:disabled + .file-input-label {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #dc3545;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.format-example {
+  text-align: left;
+  margin-top: 2rem;
+}
+
+.format-example h3 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.format-example pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.4;
+} 

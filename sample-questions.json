@@ -1,0 +1,77 @@
+[
+  {
+    "question_no": 194,
+    "zh": {
+      "question": "金融公司使用 AWS 來部署生成式 AI 模型，需產出報告以證明其處理敏感客戶資料時符合國際法規。哪個 AWS 服務可滿足這項需求？",
+      "options": [
+        {"A": "Amazon Macie"},
+        {"B": "AWS Artifact"},
+        {"C": "AWS Secrets Manager"},
+        {"D": "AWS Config"}
+      ],
+      "answers": ["B"],
+      "explanation": "AWS Artifact 提供隨選存取 AWS 的合規報告與認證（如 ISO、SOC、GDPR），協助公司證明其生成式 AI 工作負載與資料處理方式符合國際法規。"
+    },
+    "en": {
+      "question": "A financial company uses AWS to host its generative AI models. The company must generate reports to show adherence to international regulations for handling sensitive customer data. Which AWS service meets these requirements?",
+      "options": [
+        {"A": "Amazon Macie"},
+        {"B": "AWS Artifact"},
+        {"C": "AWS Secrets Manager"},
+        {"D": "AWS Config"}
+      ],
+      "answers": ["B"],
+      "explanation": "AWS Artifact provides on-demand access to AWS's compliance reports and certifications (for example, ISO, SOC, GDPR), enabling the company to demonstrate its generative AI workloads and data handling practices adhere to international regulatory requirements."
+    }
+  },
+  {
+    "question_no": 195,
+    "zh": {
+      "question": "哪個 AWS 服務可以幫助開發人員在本地環境中測試和調試 Lambda 函數？",
+      "options": [
+        {"A": "AWS SAM CLI"},
+        {"B": "AWS CloudFormation"},
+        {"C": "AWS CodeDeploy"},
+        {"D": "AWS CodePipeline"}
+      ],
+      "answers": ["A"],
+      "explanation": "AWS SAM CLI 是一個開源工具，允許開發人員在本地環境中構建、測試和調試 Lambda 函數，無需部署到 AWS 雲端。"
+    },
+    "en": {
+      "question": "Which AWS service helps developers test and debug Lambda functions in a local environment?",
+      "options": [
+        {"A": "AWS SAM CLI"},
+        {"B": "AWS CloudFormation"},
+        {"C": "AWS CodeDeploy"},
+        {"D": "AWS CodePipeline"}
+      ],
+      "answers": ["A"],
+      "explanation": "AWS SAM CLI is an open-source tool that allows developers to build, test, and debug Lambda functions in a local environment without deploying to AWS cloud."
+    }
+  },
+  {
+    "question_no": 196,
+    "zh": {
+      "question": "公司需要確保其 AWS 資源符合安全標準。哪個服務可以持續監控 AWS 資源的配置變更？",
+      "options": [
+        {"A": "AWS CloudTrail"},
+        {"B": "AWS Config"},
+        {"C": "Amazon GuardDuty"},
+        {"D": "AWS Security Hub"}
+      ],
+      "answers": ["B"],
+      "explanation": "AWS Config 持續監控和記錄 AWS 資源的配置變更，幫助組織評估、審計和評估其 AWS 資源的配置。"
+    },
+    "en": {
+      "question": "A company needs to ensure its AWS resources comply with security standards. Which service continuously monitors configuration changes to AWS resources?",
+      "options": [
+        {"A": "AWS CloudTrail"},
+        {"B": "AWS Config"},
+        {"C": "Amazon GuardDuty"},
+        {"D": "AWS Security Hub"}
+      ],
+      "answers": ["B"],
+      "explanation": "AWS Config continuously monitors and records configuration changes to AWS resources, helping organizations assess, audit, and evaluate the configuration of their AWS resources."
+    }
+  }
+] 
