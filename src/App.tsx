@@ -18,6 +18,8 @@ function App() {
     isCompleted,
     settings,
     stats,
+    isCurrentQuestionValid,
+    isValidQuestion,
     loadQuestions,
     submitAnswer,
     nextQuestion,
@@ -59,6 +61,8 @@ function App() {
         isCompleted={isCompleted}
         settings={settings}
         stats={stats}
+        isCurrentQuestionValid={isCurrentQuestionValid}
+        isValidQuestion={isValidQuestion}
         onAnswer={submitAnswer}
         onNextQuestion={nextQuestion}
         onPreviousQuestion={previousQuestion}

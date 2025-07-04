@@ -1,0 +1,33 @@
+.settings-btn {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #e9ecef;
+  background: white;
+  color: #666;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  padding: 0;
+  position: fixed;
+}
+
+.settings-btn:hover {
+  border-color: #007bff;
+  color: #007bff;
+  background: #f8f9ff;
+  transform: scale(1.05);
+}
+
+.settings-btn:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 600px) {
+  .settings-btn {
+    width: 36px;
+    height: 36px;
+  }
+} 

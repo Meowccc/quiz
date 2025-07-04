@@ -20,11 +20,32 @@ export function useQuiz() {
   const [settings, setSettings] = useState<QuizSettings>(initialSettings);
   const [startTime, setStartTime] = useState<number | null>(null);
 
+  const isValidQuestion = useCallback((question: QuizQuestion) => {
+    if (!question || !question.zh || !question.en) return false;
+    
+    const zhContent = question.zh;
+    const enContent = question.en;
+    
+    return !!(zhContent.question && zhContent.options && zhContent.answers && 
+              enContent.question && enContent.options && enContent.answers);
+  }, []);
+
   // 載入題目並隨機排序
   const loadQuestions = useCallback((newQuestions: QuizQuestion[]) => {
     console.log('loadQuestions: ', newQuestions);
 
     // question no 減1為index, 如果下一個question No 為空則給予空物件
+    const expectSize = newQuestions[newQuestions.length - 1].question_no;
+
+    const processedQuestions = [];
+    for (let i = 0; i < expectSize; i++) {
+      processedQuestions[i] = {"question_no": i + 1};
+    }
+
+    newQuestions.forEach((question) => {
+      processedQuestions[question.question_no - 1] = question;
+    });
+
     // const processedQuestions = newQuestions.map((question, index) => {
     //   if (index === newQuestions.length - 1) {
     //     return { ...question, question_no: '' };
@@ -32,11 +53,12 @@ export function useQuiz() {
     //   return question;
     // });
 
-    const processedQuestions = settings.randomOrder 
-      ? shuffle(newQuestions)
-      : newQuestions;
+    // const processedQuestions = settings.randomOrder 
+    //   ? shuffle(newQuestions)
+    //   : newQuestions;
     
-    setQuestions(processedQuestions);
+    console.log('processedQuestions: ', processedQuestions);
+    setQuestions(processedQuestions as QuizQuestion[]);
     setCurrentQuestionIndex(0);
     setUserAnswers([]);
     setCompleted(false);
@@ -57,15 +79,21 @@ export function useQuiz() {
     return currentQuestion[settings.language];
   }, [currentQuestion, settings.language]);
 
+  // 檢查當前題目是否有效
+  const isCurrentQuestionValid = useMemo(() => {
+    if (!currentQuestion) return false;
+    return isValidQuestion(currentQuestion);
+  }, [currentQuestion, isValidQuestion]);
+
   // 隨機排序選項
   const shuffledOptions = useMemo(() => {
-    if (!currentQuestionContent) return [];
+    if (!currentQuestionContent || !isCurrentQuestionValid) return [];
     return shuffleOptions(currentQuestionContent.options);
-  }, [currentQuestionContent]);
+  }, [currentQuestionContent, isCurrentQuestionValid]);
 
   // 提交答案
   const submitAnswer = useCallback((selectedAnswers: string[]) => {
-    if (!currentQuestion || !currentQuestionContent) return;
+    if (!currentQuestion || !currentQuestionContent || !isCurrentQuestionValid) return;
 
     const isCorrect = selectedAnswers.length === currentQuestionContent.answers.length &&
       selectedAnswers.every(answer => currentQuestionContent.answers.includes(answer));
@@ -83,7 +111,7 @@ export function useQuiz() {
     if (!settings.showAnswerImmediately) {
       nextQuestion();
     }
-  }, [currentQuestion, currentQuestionContent, startTime, settings.showAnswerImmediately]);
+  }, [currentQuestion, currentQuestionContent, isCurrentQuestionValid, startTime, settings.showAnswerImmediately]);
 
   // 下一題
   const nextQuestion = useCallback(() => {
@@ -155,6 +183,8 @@ export function useQuiz() {
     isCompleted,
     settings,
     stats,
+    isCurrentQuestionValid,
+    isValidQuestion,
     
     // 方法
     loadQuestions,

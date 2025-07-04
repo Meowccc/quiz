@@ -30,19 +30,11 @@ export function QuizUploader({ onQuestionsLoaded }: QuizUploaderProps) {
         throw new Error('題目不能為空');
       }
 
-      // 驗證每個題目的格式
+      // 只檢查基本格式，不檢查題目內容
       for (const question of questions) {
-        if (!question.question_no || !question.zh || !question.en) {
+        if (!question.question_no) {
           console.log('error question: ', question);
-          throw new Error('題目格式不正確，必須包含 question_no、zh、en 欄位');
-        }
-        
-        if (!question.zh.question || !question.zh.options || !question.zh.answers) {
-          throw new Error('中文題目格式不正確');
-        }
-        
-        if (!question.en.question || !question.en.options || !question.en.answers) {
-          throw new Error('英文題目格式不正確');
+          throw new Error('題目格式不正確，必須包含 question_no 欄位');
         }
       }
 

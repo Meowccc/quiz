@@ -1,7 +1,9 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import { QuizSettings } from './QuizSettings';
+import { SettingsButton } from './SettingsButton';
+import { SettingsModal } from './SettingsModal';
 import { Question } from './Question';
+import { QuestionMissing } from './QuestionMissing';
 import { Result } from './Result';
 import type { QuizSettings as QuizSettingsType } from '../types/quiz';
 import './Quiz.css';
@@ -16,6 +18,8 @@ interface QuizProps {
   isCompleted: boolean;
   settings: QuizSettingsType;
   stats: any;
+  isCurrentQuestionValid: boolean;
+  isValidQuestion: (question: any) => boolean;
   onAnswer: (selectedAnswers: string[]) => void;
   onNextQuestion: () => void;
   onPreviousQuestion: () => void;
@@ -34,6 +38,8 @@ export function Quiz({
   isCompleted,
   settings,
   stats,
+  isCurrentQuestionValid,
+  isValidQuestion,
   onAnswer,
   onNextQuestion,
   onPreviousQuestion,
@@ -41,6 +47,8 @@ export function Quiz({
   onSettingsChange,
   onRestart
 }: QuizProps) {
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
   // 取得當前題目的用戶答案
   const currentUserAnswer = useMemo(() => {
     if (!currentQuestion) return null;
@@ -87,17 +95,22 @@ export function Quiz({
             </div>
           </div>
         </div>
+      </div>
 
+      <SettingsModal
+          isOpen={isSettingsOpen}
+          settings={settings}
+          onSettingsChange={onSettingsChange}
+          onClose={() => setIsSettingsOpen(false)}
+        />
+        <SettingsButton onClick={() => setIsSettingsOpen(true)} />
+      <div className="quiz-controls">
         <LanguageSwitcher
           currentLanguage={settings.language}
           onLanguageChange={(language) => onSettingsChange({ language })}
         />
+        
       </div>
-
-      <QuizSettings
-        settings={settings}
-        onSettingsChange={onSettingsChange}
-      />
 
       <div className="quiz-navigation">
         <button
@@ -108,17 +121,6 @@ export function Quiz({
           上一題
         </button>
 
-        {shouldShowAnswer && (
-          <div className="answer-actions">
-            <button
-              className="continue-btn"
-              onClick={onNextQuestion}
-            >
-              繼續下一題
-            </button>
-          </div>
-        )}
-
         <button
           className="nav-btn next-btn"
           onClick={onNextQuestion}
@@ -128,7 +130,23 @@ export function Quiz({
         </button>
       </div>
 
-      {currentQuestion && currentQuestionContent && (
+      {/* {shouldShowAnswer && (
+        <div className="answer-actions">
+          <button
+            className="continue-btn"
+            onClick={onNextQuestion}
+          >
+            繼續下一題
+          </button>
+        </div>
+      )} */}
+
+      {currentQuestion && !isCurrentQuestionValid ? (
+        <QuestionMissing
+          questionNo={currentQuestion.question_no}
+          language={settings.language}
+        />
+      ) : currentQuestion && currentQuestionContent && isCurrentQuestionValid ? (
         <Question
           questionNo={currentQuestion.question_no}
           content={currentQuestionContent}
@@ -138,24 +156,27 @@ export function Quiz({
           userAnswer={currentUserAnswer?.selectedAnswers || []}
           isAnswered={isCurrentQuestionAnswered}
         />
-      )}
-
+      ) : null}
 
       <div className="question-jump">
-        {questions.map((_, index) => (
-          <button
-            key={index}
-            className={`jump-btn ${index === currentQuestionIndex ? 'active' : ''} ${userAnswers.find(answer => answer.questionNo === questions[index].question_no)
-                ? 'answered'
-                : ''
-              }`}
-            onClick={() => onGoToQuestion(index)}
-          >
-            {/* {questions[index].question_no} */}
-            {index + 1}
-          </button>
-        ))}
+        {questions.map((question, index) => {
+          const isQuestionValid = isValidQuestion(question);
+          const isAnswered = userAnswers.find(answer => answer.questionNo === question.question_no);
+
+          return (
+            <button
+              key={index}
+              className={`jump-btn ${index === currentQuestionIndex ? 'active' : ''} ${isAnswered ? 'answered' : ''
+                } ${!isQuestionValid ? 'invalid' : ''}`}
+              onClick={() => onGoToQuestion(index)}
+              title={!isQuestionValid ? '題目從缺' : ''}
+            >
+              {index + 1}
+            </button>
+          );
+        })}
       </div>
+
     </div>
   );
 } 
