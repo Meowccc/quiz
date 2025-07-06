@@ -167,13 +167,18 @@ export function Quiz({
         {questions.map((question, index) => {
           const isQuestionValid = isValidQuestion(question);
           const isAnswered = userAnswers.find(answer => answer.questionNo === question.question_no);
-
+          const isCorrect = isAnswered?.isCorrect;
           return (
             <button
               key={index}
-              className={`jump-btn ${index === currentQuestionIndex ? 'active' : ''} ${isAnswered ? 'answered' : ''
-                } ${!isQuestionValid ? 'invalid' : ''}`}
+              className={`jump-btn 
+                ${index === currentQuestionIndex ? 'active' : ''}  
+                ${!isQuestionValid ? 'invalid' : ''} 
+                ${isAnswered && isCorrect ? 'correct' : ''} 
+                ${isAnswered && !isCorrect ? 'incorrect' : ''}`
+              }
               onClick={() => onGoToQuestion(index)}
+              // ${isAnswered ? 'answered' : ''}
               title={!isQuestionValid ? '題目從缺' : ''}
             >
               {question.question_no}
@@ -182,7 +187,7 @@ export function Quiz({
         })}
       </div>
 
-      
+
     </div>
   );
 } 
