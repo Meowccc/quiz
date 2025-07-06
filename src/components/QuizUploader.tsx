@@ -74,7 +74,7 @@ export function QuizUploader({ onQuestionsLoaded }: QuizUploaderProps) {
 
         <div className="format-example">
           <h3>JSON 格式範例：</h3>
-          <pre>
+          <pre className="json-example">
 {`[
   {
     "question_no": 194,

@@ -82,7 +82,12 @@ export function Quiz({
     <div className="quiz-container">
       <div className="quiz-header">
         <div className="quiz-info">
-          <h2>答題系統</h2>
+          <div className='quiz-info-header'>
+            <h2 className='quiz-title'>Quiz App</h2>
+            <div style={{ marginLeft: 'auto' }}>
+              <SettingsButton onClick={() => setIsSettingsOpen(true)} />
+            </div>
+          </div>
           <div className="progress-info">
             <span className="progress-text">
               第 {currentQuestionIndex + 1} 題 / 共 {questions.length} 題
@@ -98,19 +103,18 @@ export function Quiz({
       </div>
 
       <SettingsModal
-          isOpen={isSettingsOpen}
-          settings={settings}
-          onSettingsChange={onSettingsChange}
-          onClose={() => setIsSettingsOpen(false)}
-        />
-        <SettingsButton onClick={() => setIsSettingsOpen(true)} />
+        isOpen={isSettingsOpen}
+        settings={settings}
+        onSettingsChange={onSettingsChange}
+        onClose={() => setIsSettingsOpen(false)}
+      />
+      {/* <SettingsButton onClick={() => setIsSettingsOpen(true)} />
       <div className="quiz-controls">
         <LanguageSwitcher
           currentLanguage={settings.language}
           onLanguageChange={(language) => onSettingsChange({ language })}
         />
-        
-      </div>
+      </div> */}
 
       <div className="quiz-navigation">
         <button
@@ -155,6 +159,12 @@ export function Quiz({
           showAnswer={shouldShowAnswer}
           userAnswer={currentUserAnswer?.selectedAnswers || []}
           isAnswered={isCurrentQuestionAnswered}
+          languageSwitcher={
+            <LanguageSwitcher
+              currentLanguage={settings.language}
+              onLanguageChange={(language) => onSettingsChange({ language })}
+            />
+          }
         />
       ) : null}
 
@@ -171,7 +181,7 @@ export function Quiz({
               onClick={() => onGoToQuestion(index)}
               title={!isQuestionValid ? '題目從缺' : ''}
             >
-              {index + 1}
+              {question.question_no}
             </button>
           );
         })}

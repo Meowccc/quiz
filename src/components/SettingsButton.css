@@ -1,7 +1,7 @@
 .settings-btn {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #e9ecef;
+  width: 45px;
+  height: 45px;
+  border: 3px solid #e9ecef;
   background: white;
   color: #666;
   border-radius: 8px;
@@ -11,7 +11,7 @@
   justify-content: center;
   transition: all 0.2s;
   padding: 0;
-  position: fixed;
+  /* position: fixed; */
 }
 
 .settings-btn:hover {

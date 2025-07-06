@@ -10,6 +10,7 @@ interface QuestionProps {
   showAnswer?: boolean;
   userAnswer?: string[];
   isAnswered?: boolean;
+  languageSwitcher?: any;
 }
 
 export function Question({
@@ -19,7 +20,8 @@ export function Question({
   onAnswer,
   showAnswer = false,
   userAnswer = [],
-  isAnswered = false
+  isAnswered = false,
+  languageSwitcher,
 }: QuestionProps) {
   const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
 
@@ -82,6 +84,7 @@ export function Question({
         {isMultipleChoice && (
           <span className="multiple-choice-hint">（多選題）</span>
         )}
+        {languageSwitcher}
       </div>
 
       <div className="question-content">

@@ -4,6 +4,27 @@
   padding: 2rem;
 }
 
+.quiz-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.quiz-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  /* font-size: 1.5rem;
+  font-weight: 600; */
+}
+
+.language-switcher-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
 @media (max-width: 600px) {
   .quiz-container {
     padding: 0.5rem 0.5rem 1.5rem 0.5rem;

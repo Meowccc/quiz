@@ -8,7 +8,7 @@ import './App.css'
 function App() {
   const [questions, setQuestions] = useState<QuizQuestion[]>([])
   const [isStarted, setIsStarted] = useState(false)
-  
+
   const {
     currentQuestion,
     currentQuestionContent,
@@ -51,6 +51,7 @@ function App() {
 
   return (
     <div className="app">
+      <div className="app-container">
       <Quiz
         questions={questions}
         currentQuestion={currentQuestion}
@@ -71,6 +72,7 @@ function App() {
         onRestart={handleRestart}
       />
     </div>
+    </div >
   )
 }
 
