@@ -1,5 +1,6 @@
 import type { UserAnswer, QuizQuestion, Language } from '../types/quiz';
 import './Result.css';
+import { Option } from './Option';
 
 interface ResultProps {
   userAnswers: UserAnswer[];
@@ -14,6 +15,7 @@ interface ResultProps {
   };
   onRestart: () => void;
   onGoToQuestion: (index: number) => void;
+  isValidQuestion: (question: QuizQuestion) => boolean;
 }
 
 export function Result({
@@ -22,13 +24,14 @@ export function Result({
   language,
   stats,
   onRestart,
-  onGoToQuestion
+  onGoToQuestion,
+  isValidQuestion
 }: ResultProps) {
   const formatTime = (ms: number) => {
     const seconds = Math.floor(ms / 1000);
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    
+
     if (minutes > 0) {
       return `${minutes}分${remainingSeconds}秒`;
     }
@@ -72,13 +75,16 @@ export function Result({
       <div className="questions-review">
         <h3>題目回顧</h3>
         <div className="questions-list">
-          {questions.map((question, index) => {
+          {questions.filter(isValidQuestion).map((question, index) => {
             const userAnswer = userAnswers.find(
               answer => answer.questionNo === question.question_no
             );
             const content = getQuestionContent(question);
+            console.log('userAnswer: ', userAnswer);
+            console.log('content: ', content);
             const isCorrect = userAnswer?.isCorrect ?? false;
-            
+
+            console.log('show question: ', question);
             return (
               <div
                 key={question.question_no}
@@ -95,15 +101,45 @@ export function Result({
                 </div>
                 <div className="question-item-content">
                   <p className="question-item-text">
-                    {content.question.length > 100 
+                    {content.question}
+                    {/* {content.question.length > 100 
                       ? `${content.question.substring(0, 100)}...` 
                       : content.question
-                    }
+                    } */}
                   </p>
                   <div className="question-item-answers">
+
+                    <Option
+                      selectedAnswers={userAnswer?.selectedAnswers || []}
+                      content={content}
+                      userAnswer={content.answers}
+                      options={content.options}
+                      showAnswer={true} isOptionCorrect={() => false}
+                      isOptionSelected={() => false}
+                      handleOptionSelect={() => { }}
+                    />
+
                     <span className="answer-label">你的答案：</span>
+
+
                     <span className="user-answer">
                       {userAnswer?.selectedAnswers.join(', ') || '未作答'}
+                      {/* {userAnswer?.selectedAnswers?.length ? (
+                        userAnswer.selectedAnswers.map(ans => {
+                          const option = content.options.find(option => option.hasOwnProperty(ans));
+                          return option ? (
+                            <div key={ans}>
+                              <div className="option-content">
+                                <span className="option-label">A.</span>
+                                <span className="option-text">dfaf</span>
+                              </div>
+                              {ans}. {option[ans]}
+                            </div>
+                          ) : null;
+                        })
+                      ) : (
+                        '未作答'
+                      )} */}
                     </span>
                     <span className="answer-label">正確答案：</span>
                     <span className="correct-answer">

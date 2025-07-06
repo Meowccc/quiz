@@ -7,6 +7,7 @@ import { QuestionMissing } from './QuestionMissing';
 import { Result } from './Result';
 import type { QuizSettings as QuizSettingsType } from '../types/quiz';
 import './Quiz.css';
+import { ResetButton } from './ResetButton';
 
 interface QuizProps {
   questions: any[];
@@ -26,6 +27,7 @@ interface QuizProps {
   onGoToQuestion: (index: number) => void;
   onSettingsChange: (settings: Partial<QuizSettingsType>) => void;
   onRestart: () => void;
+  onComplete: () => void;
 }
 
 export function Quiz({
@@ -45,7 +47,8 @@ export function Quiz({
   onPreviousQuestion,
   onGoToQuestion,
   onSettingsChange,
-  onRestart
+  onRestart,
+  onComplete
 }: QuizProps) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
@@ -66,6 +69,7 @@ export function Quiz({
   }, [settings.showAnswerImmediately, isCurrentQuestionAnswered]);
 
   if (isCompleted) {
+    console.log('isCompleted: ', isCompleted, questions);
     return (
       <Result
         userAnswers={userAnswers}
@@ -74,6 +78,7 @@ export function Quiz({
         stats={stats}
         onRestart={onRestart}
         onGoToQuestion={onGoToQuestion}
+        isValidQuestion={isValidQuestion}
       />
     );
   }
@@ -84,6 +89,9 @@ export function Quiz({
         <div className="quiz-info">
           <div className='quiz-info-header'>
             <h2 className='quiz-title'>Quiz App</h2>
+            <div style={{ marginRight: 'auto' }}>
+              <ResetButton onClick={onRestart} />
+            </div>
             <div style={{ marginLeft: 'auto' }}>
               <SettingsButton onClick={() => setIsSettingsOpen(true)} />
             </div>
@@ -134,17 +142,6 @@ export function Quiz({
         </button>
       </div>
 
-      {/* {shouldShowAnswer && (
-        <div className="answer-actions">
-          <button
-            className="continue-btn"
-            onClick={onNextQuestion}
-          >
-            繼續下一題
-          </button>
-        </div>
-      )} */}
-
       {currentQuestion && !isCurrentQuestionValid ? (
         <QuestionMissing
           questionNo={currentQuestion.question_no}
@@ -187,6 +184,14 @@ export function Quiz({
         })}
       </div>
 
+      <div className="submit-section">
+        <button
+          className="submit-btn"
+          onClick={onComplete}
+        >
+          完成題目
+        </button>
+      </div>
     </div>
   );
 } 

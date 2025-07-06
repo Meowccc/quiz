@@ -95,7 +95,7 @@ export function Question({
         {shuffledOptions.map((option) => {
           const optionKey = Object.keys(option)[0];
           const optionValue = Object.values(option)[0];
-          
+
           return (
             <div
               key={optionKey}
@@ -128,6 +128,7 @@ export function Question({
           </button>
         </div>
       )}
+
 
       {showAnswer && (
         <div className="answer-section">

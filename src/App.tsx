@@ -6,10 +6,11 @@ import type { QuizQuestion } from './types/quiz'
 import './App.css'
 
 function App() {
-  const [questions, setQuestions] = useState<QuizQuestion[]>([])
+  const [initQuestions, setInitQuestions] = useState<QuizQuestion[]>([])
   const [isStarted, setIsStarted] = useState(false)
 
   const {
+    questions,
     currentQuestion,
     currentQuestionContent,
     shuffledOptions,
@@ -26,24 +27,26 @@ function App() {
     previousQuestion,
     goToQuestion,
     updateSettings,
-    restart
+    restart,
+    completeQuiz
   } = useQuiz()
 
   const handleQuestionsLoaded = (newQuestions: QuizQuestion[]) => {
-    setQuestions(newQuestions)
+    setInitQuestions(newQuestions)
     loadQuestions(newQuestions)
     setIsStarted(true)
   }
 
   const handleRestart = () => {
     setIsStarted(false)
-    setQuestions([])
+    setInitQuestions([])
     restart()
   }
 
   if (!isStarted) {
     return (
       <div className="app">
+        
         <QuizUploader onQuestionsLoaded={handleQuestionsLoaded} />
       </div>
     )
@@ -52,26 +55,27 @@ function App() {
   return (
     <div className="app">
       <div className="app-container">
-      <Quiz
-        questions={questions}
-        currentQuestion={currentQuestion}
-        currentQuestionContent={currentQuestionContent}
-        shuffledOptions={shuffledOptions}
-        currentQuestionIndex={currentQuestionIndex}
-        userAnswers={userAnswers}
-        isCompleted={isCompleted}
-        settings={settings}
-        stats={stats}
-        isCurrentQuestionValid={isCurrentQuestionValid}
-        isValidQuestion={isValidQuestion}
-        onAnswer={submitAnswer}
-        onNextQuestion={nextQuestion}
-        onPreviousQuestion={previousQuestion}
-        onGoToQuestion={goToQuestion}
-        onSettingsChange={updateSettings}
-        onRestart={handleRestart}
-      />
-    </div>
+        <Quiz
+          questions={questions}
+          currentQuestion={currentQuestion}
+          currentQuestionContent={currentQuestionContent}
+          shuffledOptions={shuffledOptions}
+          currentQuestionIndex={currentQuestionIndex}
+          userAnswers={userAnswers}
+          isCompleted={isCompleted}
+          settings={settings}
+          stats={stats}
+          isCurrentQuestionValid={isCurrentQuestionValid}
+          isValidQuestion={isValidQuestion}
+          onAnswer={submitAnswer}
+          onNextQuestion={nextQuestion}
+          onPreviousQuestion={previousQuestion}
+          onGoToQuestion={goToQuestion}
+          onSettingsChange={updateSettings}
+          onRestart={handleRestart}
+          onComplete={completeQuiz}
+        />
+      </div>
     </div >
   )
 }

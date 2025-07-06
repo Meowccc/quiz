@@ -122,6 +122,11 @@ export function useQuiz() {
     }
   }, [currentQuestionIndex, questions.length]);
 
+  // 完成題目
+  const completeQuiz = useCallback(() => {
+    setCompleted(true);
+  }, []);
+
   // 上一題
   const previousQuestion = useCallback(() => {
     if (currentQuestionIndex > 0) {
@@ -154,6 +159,11 @@ export function useQuiz() {
     setStartTime(Date.now());
   }, [questions, settings.randomOrder]);
 
+  // 提前完成答題
+  const completeQuiz = useCallback(() => {
+    setCompleted(true);
+  }, []);
+
   // 計算統計資料
   const stats = useMemo(() => {
     if (userAnswers.length === 0) return null;
@@ -174,7 +184,7 @@ export function useQuiz() {
 
   return {
     // 狀態
-    questions,
+    questions ,
     currentQuestion,
     currentQuestionContent,
     shuffledOptions,
@@ -193,6 +203,7 @@ export function useQuiz() {
     previousQuestion,
     goToQuestion,
     updateSettings,
-    restart
+    restart,
+    completeQuiz
   };
 } 

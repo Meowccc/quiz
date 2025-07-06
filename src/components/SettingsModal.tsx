@@ -60,7 +60,7 @@ export function SettingsModal({ isOpen, settings, onSettingsChange, onClose }: S
               <span>隨機順序作答</span>
             </label>
             <p className="setting-description">
-              題目和選項會隨機排序，增加答題挑戰性
+              題目和選項會隨機排序
             </p>
           </div>
 
@@ -74,7 +74,7 @@ export function SettingsModal({ isOpen, settings, onSettingsChange, onClose }: S
               <span>立即顯示答案</span>
             </label>
             <p className="setting-description">
-              答題後立即顯示正確答案和解釋
+              答題後立即顯示正確答案和解釋，否則需完成題目後才會顯示
             </p>
           </div>
         </div>
