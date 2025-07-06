@@ -6,7 +6,7 @@ import type { QuizQuestion } from './types/quiz'
 import './App.css'
 
 function App() {
-  const [initQuestions, setInitQuestions] = useState<QuizQuestion[]>([])
+  // const [initQuestions, setInitQuestions] = useState<QuizQuestion[]>([])
   const [isStarted, setIsStarted] = useState(false)
 
   const {
@@ -28,18 +28,17 @@ function App() {
     goToQuestion,
     updateSettings,
     restart,
-    completeQuiz
   } = useQuiz()
 
   const handleQuestionsLoaded = (newQuestions: QuizQuestion[]) => {
-    setInitQuestions(newQuestions)
+    // setInitQuestions(newQuestions)
     loadQuestions(newQuestions)
     setIsStarted(true)
   }
 
   const handleRestart = () => {
     setIsStarted(false)
-    setInitQuestions([])
+    // setInitQuestions([])
     restart()
   }
 
@@ -73,7 +72,6 @@ function App() {
           onGoToQuestion={goToQuestion}
           onSettingsChange={updateSettings}
           onRestart={handleRestart}
-          onComplete={completeQuiz}
         />
       </div>
     </div >

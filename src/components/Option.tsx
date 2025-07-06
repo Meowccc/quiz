@@ -1,5 +1,4 @@
 
-import { useState } from 'react';
 import type { QuizContent, QuizOption } from '../types/quiz';
 import './Option.css';
 

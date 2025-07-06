@@ -27,7 +27,6 @@ interface QuizProps {
   onGoToQuestion: (index: number) => void;
   onSettingsChange: (settings: Partial<QuizSettingsType>) => void;
   onRestart: () => void;
-  onComplete: () => void;
 }
 
 export function Quiz({
@@ -48,7 +47,6 @@ export function Quiz({
   onGoToQuestion,
   onSettingsChange,
   onRestart,
-  onComplete
 }: QuizProps) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
