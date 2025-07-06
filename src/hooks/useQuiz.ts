@@ -4,7 +4,7 @@ import type {
   QuizSettings, 
   UserAnswer
 } from '../types/quiz';
-import { shuffle, shuffleOptions } from '../utils/shuffle';
+import { shuffle } from '../utils/shuffle';
 
 const initialSettings: QuizSettings = {
   language: 'zh',
@@ -86,11 +86,11 @@ export function useQuiz() {
   }, [currentQuestion, isValidQuestion]);
 
   // 隨機排序選項
-  // TODO 隨機排序選項
+  // TODO 隨機排序選項 暫時移除
   const shuffledOptions = useMemo(() => {
     if (!currentQuestionContent || !isCurrentQuestionValid) return [];
     return currentQuestionContent.options
-    // return
+    // return shuffleOptions
   }, [currentQuestionContent, isCurrentQuestionValid]);
 
   // 提交答案
