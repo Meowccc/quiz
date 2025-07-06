@@ -57,7 +57,7 @@ export function SettingsModal({ isOpen, settings, onSettingsChange, onClose }: S
                 checked={settings.randomOrder}
                 onChange={(e) => onSettingsChange({ randomOrder: e.target.checked })}
               />
-              <span>隨機順序作答</span>
+              <span>隨機順序作答  </span> <span style={{color: 'red' }}>(TODO 還沒修正)</span>
             </label>
             <p className="setting-description">
               題目和選項會隨機排序
@@ -72,6 +72,7 @@ export function SettingsModal({ isOpen, settings, onSettingsChange, onClose }: S
                 onChange={(e) => onSettingsChange({ showAnswerImmediately: e.target.checked })}
               />
               <span>立即顯示答案</span>
+              <span style={{color: 'red' }}>(作答中也可變更)</span>
             </label>
             <p className="setting-description">
               答題後立即顯示正確答案和解釋，否則需完成題目後才會顯示

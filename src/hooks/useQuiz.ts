@@ -9,7 +9,7 @@ import { shuffle, shuffleOptions } from '../utils/shuffle';
 const initialSettings: QuizSettings = {
   language: 'zh',
   randomOrder: true,
-  showAnswerImmediately: false
+  showAnswerImmediately: true
 };
 
 export function useQuiz() {
@@ -86,9 +86,11 @@ export function useQuiz() {
   }, [currentQuestion, isValidQuestion]);
 
   // 隨機排序選項
+  // TODO 隨機排序選項
   const shuffledOptions = useMemo(() => {
     if (!currentQuestionContent || !isCurrentQuestionValid) return [];
-    return shuffleOptions(currentQuestionContent.options);
+    return currentQuestionContent.options
+    // return shuffleOptions(currentQuestionContent.options);
   }, [currentQuestionContent, isCurrentQuestionValid]);
 
   // 提交答案
