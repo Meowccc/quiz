@@ -90,7 +90,7 @@ export function useQuiz() {
   const shuffledOptions = useMemo(() => {
     if (!currentQuestionContent || !isCurrentQuestionValid) return [];
     return currentQuestionContent.options
-    // return shuffleOptions(currentQuestionContent.options);
+    // return
   }, [currentQuestionContent, isCurrentQuestionValid]);
 
   // 提交答案
