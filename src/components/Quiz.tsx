@@ -184,14 +184,7 @@ export function Quiz({
         })}
       </div>
 
-      <div className="submit-section">
-        <button
-          className="submit-btn"
-          onClick={onComplete}
-        >
-          完成題目
-        </button>
-      </div>
+      
     </div>
   );
 } 
