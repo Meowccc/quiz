@@ -8,6 +8,7 @@ import { Result } from './Result';
 import type { QuizSettings as QuizSettingsType } from '../types/quiz';
 import './Quiz.css';
 import { ResetButton } from './ResetButton';
+import { GenericButton } from './GenericButton';
 
 interface QuizProps {
   questions: any[];
@@ -27,6 +28,7 @@ interface QuizProps {
   onGoToQuestion: (index: number) => void;
   onSettingsChange: (settings: Partial<QuizSettingsType>) => void;
   onRestart: () => void;
+  onComplete: () => void;
 }
 
 export function Quiz({
@@ -47,6 +49,7 @@ export function Quiz({
   onGoToQuestion,
   onSettingsChange,
   onRestart,
+  onComplete
 }: QuizProps) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
@@ -108,6 +111,7 @@ export function Quiz({
         </div>
       </div>
 
+
       <SettingsModal
         isOpen={isSettingsOpen}
         settings={settings}
@@ -162,6 +166,9 @@ export function Quiz({
           }
         />
       ) : null}
+
+      {/* 完成題目xxx */}
+      <GenericButton onClick={onComplete} text="提交題目" color="success" />
 
       <div className="question-jump">
         {questions.map((question, index) => {

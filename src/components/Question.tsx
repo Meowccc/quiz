@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { QuizContent, QuizOption } from '../types/quiz';
 import './Question.css';
+import { GenericButton } from './GenericButton';
 
 interface QuestionProps {
   questionNo: number;
@@ -118,15 +119,8 @@ export function Question({
       </div>
 
       {!isAnswered && (
-        <div className="submit-section">
-          <button
-            className="submit-btn"
-            onClick={handleSubmit}
-            disabled={selectedAnswers.length === 0}
-          >
-            提交答案
-          </button>
-        </div>
+
+        <GenericButton onClick={handleSubmit} text="確認答案" color="primary" />
       )}
 
 
@@ -138,6 +132,7 @@ export function Question({
           </div>
         </div>
       )}
+      
     </div>
   );
 } 

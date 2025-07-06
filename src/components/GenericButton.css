@@ -1,0 +1,43 @@
+.generic-btn-container {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.generic-btn {
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    padding: 8px 18px;
+    font-size: 0.95rem;
+    padding: 12px 32px;
+}
+
+/* 預設灰色 */
+.generic-btn.default {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+/* 主要按鈕 藍色 */
+.generic-btn.primary {
+    background-color: #4f8dfd;
+    color: white;
+}
+
+/* 危險 按鈕 紅色 */
+.generic-btn.danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* 成功 按鈕 綠色 */
+.generic-btn.success {
+    background-color: #28a745;
+    color: white;
+}
+
+.generic-btn:hover {
+    opacity: 0.9;
+}

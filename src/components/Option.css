@@ -1,141 +1,154 @@
 .question-container {
+    width: 100%;
     background: white;
     border: 3px solid #E5E7EB;
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 1.5rem;
-  }
-  
-  @media (max-width: 600px) {
+}
+
+@media (max-width: 600px) {
     .question-container {
-      padding: 0.75rem 0.5rem;
-      border-radius: 8px;
+        padding: 0.75rem 0.5rem;
+        border-radius: 8px;
     }
+
     .question-header {
-      gap: 6px;
-      margin-bottom: 1rem;
+        gap: 6px;
+        margin-bottom: 1rem;
     }
+
     .question-number {
-      font-size: 1rem;
+        font-size: 1rem;
     }
+
     .multiple-choice-hint {
-      font-size: 0.8rem;
+        font-size: 0.8rem;
     }
+
     .question-text {
-      font-size: 1rem;
+        font-size: 1rem;
     }
+
     .options-container {
-      gap: 8px;
-      margin-bottom: 1rem;
+        gap: 8px;
+        margin-bottom: 1rem;
+        width: 100%;
     }
+
     .option {
-      padding: 0.75rem;
-      border-radius: 6px;
-      font-size: 0.95rem;
+        padding: 0.75rem;
+        border-radius: 6px;
+        font-size: 0.95rem;
+        width: 100%;
     }
+
     .option-label {
-      min-width: 18px;
-      font-size: 0.95rem;
+        min-width: 18px;
+        font-size: 0.95rem;
     }
+
     .submit-btn {
-      padding: 8px 18px;
-      font-size: 0.95rem;
+        padding: 8px 18px;
+        font-size: 0.95rem;
     }
+
     .answer-section {
-      margin-top: 1rem;
-      padding-top: 1rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
     }
-  }
-  
-  .question-header {
+}
+
+.question-header {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 1.5rem;
     justify-content: space-between;
-  }
-  
-  .question-number {
+}
+
+.question-number {
     font-size: 1.2rem;
     font-weight: 600;
     color: #007bff;
-  }
-  
-  .multiple-choice-hint {
+}
+
+.multiple-choice-hint {
     font-size: 0.9rem;
     color: #dc3545;
     font-weight: 500;
-  }
-  
-  .question-content {
+}
+
+.question-content {
     margin-bottom: 2rem;
-  }
-  
-  .question-text {
+}
+
+.question-text {
     font-size: 1.1rem;
     line-height: 1.6;
     color: #333;
     margin: 0;
     text-align: left;
-  }
-  
-  .options-container {
+}
+
+.options-container {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 1rem;
-  }
-  
-  .option {
+    width: 100%;
+}
+
+.option {
     border: 2px solid #e9ecef;
     border-radius: 8px;
-    padding: 0.5rem 1rem ;
+    padding: 0.5rem 1rem;
     cursor: pointer;
     transition: all 0.2s;
     position: relative;
-  }
-  
-  .option:hover {
+}
+
+.option:hover {
     border-color: #007bff;
     background: #f8f9ff;
-  }
-  
-  .option.selected {
+}
+
+.option.selected {
     border-color: #007bff;
     background: #e3f2fd;
-  }
-  
-  .option.correct {
+}
+
+.option.correct {
     border-color: #28a745;
     background: #d4edda;
-  }
-  
-  .option.incorrect {
+}
+
+.option.incorrect {
     border-color: #dc3545;
     background: #f8d7da;
-  }
-  
-  .option-content {
+}
+
+.option-content {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-  }
-  
-  .option-label {
+}
+
+.option-label {
     font-weight: 600;
     color: #007bff;
     min-width: 24px;
-  }
-  
-  .option-text {
+}
+
+.option-text {
     flex: 1;
     line-height: 1.5;
     color: #333;
     text-align: left;
-  }
-  
-  .correct-indicator {
+}
+
+.correct-indicator {
     position: absolute;
     top: 5px;
     left: -25px;
@@ -143,9 +156,9 @@
     color: #28a745;
     font-weight: bold;
     font-size: 1.2rem;
-  }
-  
-  .incorrect-indicator {
+}
+
+.incorrect-indicator {
     position: absolute;
     top: 5px;
     left: -25px;
@@ -153,13 +166,13 @@
     color: #dc3545;
     font-weight: bold;
     font-size: 1.2rem;
-  }
-  
-  .submit-section {
+}
+
+.submit-section {
     text-align: center;
-  }
-  
-  .submit-btn {
+}
+
+.submit-btn {
     padding: 12px 32px;
     background: #007bff;
     color: white;
@@ -169,31 +182,31 @@
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s;
-  }
-  
-  .submit-btn:hover:not(:disabled) {
+}
+
+.submit-btn:hover:not(:disabled) {
     background: #0056b3;
-  }
-  
-  .submit-btn:disabled {
+}
+
+.submit-btn:disabled {
     background: #ccc;
     cursor: not-allowed;
-  }
-  
-  .answer-section {
+}
+
+.answer-section {
     margin-top: 2rem;
     padding-top: 2rem;
     border-top: 1px solid #e9ecef;
-  }
-  
-  .explanation h4 {
+}
+
+.explanation h4 {
     color: #333;
     margin: 0 0 0.5rem 0;
     font-size: 1rem;
-  }
-  
-  .explanation p {
+}
+
+.explanation p {
     color: #666;
     line-height: 1.6;
     margin: 0;
-  } 
+}

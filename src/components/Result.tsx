@@ -119,32 +119,21 @@ export function Result({
                       handleOptionSelect={() => { }}
                     />
 
-                    <span className="answer-label">你的答案：</span>
-
-
-                    <span className="user-answer">
-                      {userAnswer?.selectedAnswers.join(', ') || '未作答'}
-                      {/* {userAnswer?.selectedAnswers?.length ? (
-                        userAnswer.selectedAnswers.map(ans => {
-                          const option = content.options.find(option => option.hasOwnProperty(ans));
-                          return option ? (
-                            <div key={ans}>
-                              <div className="option-content">
-                                <span className="option-label">A.</span>
-                                <span className="option-text">dfaf</span>
-                              </div>
-                              {ans}. {option[ans]}
-                            </div>
-                          ) : null;
-                        })
-                      ) : (
-                        '未作答'
-                      )} */}
-                    </span>
-                    <span className="answer-label">正確答案：</span>
-                    <span className="correct-answer">
-                      {content.answers.join(', ')}
-                    </span>
+                    <div className="answer-item">
+                      <div>
+                        <span className="answer-label">你的答案：</span>
+                        <span className="user-answer">
+                          {userAnswer?.selectedAnswers.join(', ') || '未作答'}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="answer-label">正確答案：</span>
+                        <span className="correct-answer">
+                          {content.answers.join(', ')}
+                        </span>
+                      </div>
+                    </div>
+                    
                   </div>
                 </div>
               </div>

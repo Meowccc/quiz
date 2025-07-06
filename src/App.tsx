@@ -29,6 +29,7 @@ function App() {
     goToQuestion,
     updateSettings,
     restart,
+    completeQuiz
   } = useQuiz()
 
   const handleQuestionsLoaded = (newQuestions: QuizQuestion[]) => {
@@ -76,6 +77,7 @@ function App() {
           onGoToQuestion={goToQuestion}
           onSettingsChange={updateSettings}
           onRestart={handleRestart}
+          onComplete={completeQuiz}
         />
       </div>
     </div >

@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
-import type { 
-  QuizQuestion, 
-  QuizSettings, 
+import type {
+  QuizQuestion,
+  QuizSettings,
   UserAnswer
 } from '../types/quiz';
 import { shuffle } from '../utils/shuffle';
@@ -22,12 +22,12 @@ export function useQuiz() {
 
   const isValidQuestion = useCallback((question: QuizQuestion) => {
     if (!question || !question.zh || !question.en) return false;
-    
+
     const zhContent = question.zh;
     const enContent = question.en;
-    
-    return !!(zhContent.question && zhContent.options && zhContent.answers && 
-              enContent.question && enContent.options && enContent.answers);
+
+    return !!(zhContent.question && zhContent.options && zhContent.answers &&
+      enContent.question && enContent.options && enContent.answers);
   }, []);
 
   // 載入題目並隨機排序
@@ -39,7 +39,7 @@ export function useQuiz() {
 
     const processedQuestions = [];
     for (let i = 0; i < expectSize; i++) {
-      processedQuestions[i] = {"question_no": i + 1};
+      processedQuestions[i] = { "question_no": i + 1 };
     }
 
     newQuestions.forEach((question) => {
@@ -56,7 +56,7 @@ export function useQuiz() {
     // const processedQuestions = settings.randomOrder 
     //   ? shuffle(newQuestions)
     //   : newQuestions;
-    
+
     console.log('processedQuestions: ', processedQuestions);
     setQuestions(processedQuestions as QuizQuestion[]);
     setCurrentQuestionIndex(0);
@@ -117,6 +117,7 @@ export function useQuiz() {
 
   // 下一題
   const nextQuestion = useCallback(() => {
+
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
@@ -150,10 +151,10 @@ export function useQuiz() {
 
   // 重新開始
   const restart = useCallback(() => {
-    const processedQuestions = settings.randomOrder 
+    const processedQuestions = settings.randomOrder
       ? shuffle(questions)
       : questions;
-    
+
     setQuestions(processedQuestions);
     setCurrentQuestionIndex(0);
     setUserAnswers([]);
@@ -163,25 +164,26 @@ export function useQuiz() {
 
   // 計算統計資料
   const stats = useMemo(() => {
-    if (userAnswers.length === 0) return null;
+    // if (userAnswers.length === 0) return null;
 
-    const correct = userAnswers.filter(answer => answer.isCorrect).length;
-    const total = userAnswers.length;
-    const accuracy = (correct / total) * 100;
-    const totalTime = userAnswers.reduce((sum, answer) => sum + answer.timeSpent, 0);
+    const total = userAnswers?.length ?? 0;
+    const correct = userAnswers?.filter(a => a.isCorrect).length ?? 0;
+    const accuracy = total ? (correct / total) * 100 : 0;
+    const totalTime = userAnswers?.reduce((sum, a) => sum + (a.timeSpent ?? 0), 0) ?? 0;
+    const averageTime = total ? totalTime / total : 0;
 
     return {
       correct,
       total,
       accuracy,
       totalTime,
-      averageTime: totalTime / total
+      averageTime
     };
   }, [userAnswers]);
 
   return {
     // 狀態
-    questions ,
+    questions,
     currentQuestion,
     currentQuestionContent,
     shuffledOptions,
@@ -192,7 +194,7 @@ export function useQuiz() {
     stats,
     isCurrentQuestionValid,
     isValidQuestion,
-    
+
     // 方法
     loadQuestions,
     submitAnswer,
