@@ -51,8 +51,8 @@ export function QuizUploader({ onQuestionsLoaded }: QuizUploaderProps) {
       <div className="upload-container">
         <h2>上傳題目檔案</h2>
         <p>請選擇包含題目的 JSON 檔案</p>
-        
-        <div className="file-input-wrapper">
+
+        <div className="file-input-wrapper" style={{ position: 'relative', width: '200px', height: '40px' }}>
           <input
             type="file"
             accept=".json"
@@ -60,8 +60,27 @@ export function QuizUploader({ onQuestionsLoaded }: QuizUploaderProps) {
             disabled={isLoading}
             id="quiz-file-input"
             className="file-input"
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              opacity: 0,
+              zIndex: 2,
+              cursor: 'pointer'
+            }}
           />
-          <label htmlFor="quiz-file-input" className="file-input-label">
+          <label htmlFor="quiz-file-input" className="file-input-label" style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: '#eee',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            width: '100%',
+            height: '100%',
+            position: 'relative',
+            zIndex: 1
+          }}>
             {isLoading ? '載入中...' : '選擇檔案'}
           </label>
         </div>
@@ -75,7 +94,7 @@ export function QuizUploader({ onQuestionsLoaded }: QuizUploaderProps) {
         <div className="format-example">
           <h3>JSON 格式範例：</h3>
           <pre className="json-example">
-{`[
+            {`[
   {
     "question_no": 194,
     "zh": {
