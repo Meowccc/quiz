@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { LanguageSwitcher } from './LanguageSwitcher';
+import { LanguageSwitcher, supportedLanguages } from './LanguageSwitcher';
 import { SettingsButton } from './SettingsButton';
 import { SettingsModal } from './SettingsModal';
 import { Question } from './Question';
@@ -68,6 +68,16 @@ export function Quiz({
   const shouldShowAnswer = useMemo(() => {
     return settings.showAnswerImmediately && isCurrentQuestionAnswered;
   }, [settings.showAnswerImmediately, isCurrentQuestionAnswered]);
+
+  function hasLanguage(data: any, lang: QuizSettingsType['language']): boolean {
+    return lang in data && data[lang] != null;
+  }
+  
+  function getAvailableLanguages(data: any): QuizSettingsType['language'][] {
+    return supportedLanguages.filter(lang => hasLanguage(data, lang));
+  }
+
+  const availableLangs = getAvailableLanguages(currentQuestion);
 
   if (isCompleted) {
     console.log('isCompleted: ', isCompleted, questions);
@@ -143,7 +153,6 @@ export function Quiz({
           下一題
         </button>
       </div>
-
       {currentQuestion && !isCurrentQuestionValid ? (
         <QuestionMissing
           questionNo={currentQuestion.question_no}
@@ -162,6 +171,7 @@ export function Quiz({
           languageSwitcher={
             <LanguageSwitcher
               currentLanguage={settings.language}
+              availableLanguages={availableLangs}
               onLanguageChange={(language) => onSettingsChange({ language })}
             />
           }

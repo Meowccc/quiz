@@ -1,32 +1,36 @@
 import type { Language } from '../types/quiz';
 import './LanguageSwitcher.css';
 
+export const supportedLanguages: Language[] = ['cn', 'zh', 'en'];
+
 interface LanguageSwitcherProps {
   currentLanguage: Language;
+  availableLanguages: Language[];
   onLanguageChange: (language: Language) => void;
 }
 
-export function LanguageSwitcher({ currentLanguage, onLanguageChange }: LanguageSwitcherProps) {
+const languageLabels: Record<Language, string> = {
+  cn: '簡',
+  zh: '繁',
+  en: '英',
+};
+
+export function LanguageSwitcher({ currentLanguage, availableLanguages, onLanguageChange }: LanguageSwitcherProps) {
+  // 過濾並排序 availableLanguages，確保順序跟 supportedLanguages 一致
+  const orderedLanguages = supportedLanguages.filter(lang => availableLanguages.includes(lang));
+
   return (
     <div className="language-switcher">
-            <button
-        className={`language-btn ${currentLanguage === 'cn' ? 'active' : ''}`}
-        onClick={() => onLanguageChange('cn')}
-      >
-        簡
-      </button>
-      <button
-        className={`language-btn ${currentLanguage === 'zh' ? 'active' : ''}`}
-        onClick={() => onLanguageChange('zh')}
-      >
-        繁
-      </button>
-      <button
-        className={`language-btn ${currentLanguage === 'en' ? 'active' : ''}`}
-        onClick={() => onLanguageChange('en')}
-      >
-        英
-      </button>
+      {orderedLanguages.map(lang => (
+        <button
+          key={lang}
+          className={`language-btn ${currentLanguage === lang ? 'active' : ''}`}
+          onClick={() => onLanguageChange(lang)}
+          type="button"
+        >
+          {languageLabels[lang]}
+        </button>
+      ))}
     </div>
   );
-} 
+}
