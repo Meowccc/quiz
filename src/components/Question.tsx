@@ -52,6 +52,7 @@ export function Question({
   const handleSubmit = () => {
     if (selectedAnswers.length > 0) {
       onAnswer(selectedAnswers);
+      handleControversialClick();
     }
   };
 
