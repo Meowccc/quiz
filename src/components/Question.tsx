@@ -82,7 +82,7 @@ export function Question({
 
   // 處理爭議題目圖示點擊
   const handleControversialClick = () => {
-    alert('此為爭議題');
+    alert('此為爭議題(跟其他份題目的答案有所出入或是跟微信公眾號的答案有所出入), 請自行斟酌');
   };
 
   return (
@@ -143,7 +143,7 @@ export function Question({
         <GenericButton onClick={handleSubmit} text="確認答案" color="primary" />
       )}
 
-      {showAnswer && (
+      {showAnswer && content?.explanation && (
         <div className="answer-section">
           <div className="explanation">
             <h4>解釋：</h4>
