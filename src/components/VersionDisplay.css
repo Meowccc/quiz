@@ -1,9 +1,9 @@
 .version-display {
   position: fixed;
-  top: 1rem;
+  top: 3px;
   right: 1rem;
   background: rgba(0, 0, 0, 0.1);
-  color: #666;
+  color: red;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-size: 0.75rem;
