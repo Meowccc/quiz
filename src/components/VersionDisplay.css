@@ -14,7 +14,7 @@
 
 @media (max-width: 768px) {
   .version-display {
-    bottom: 0.5rem;
+    bottom: 3px;
     right: 0.5rem;
     font-size: 0.7rem;
     padding: 0.2rem 0.4rem;
