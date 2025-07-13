@@ -5,6 +5,8 @@ import { useQuiz } from './hooks/useQuiz'
 import type { QuizQuestion } from './types/quiz'
 import './App.css'
 import { SettingsModal } from './components/SettingsModal'
+import { VersionDisplay } from './components/VersionDisplay'
+import { APP_CONFIG } from './config/app'
 
 function App() {
   // const [initQuestions, setInitQuestions] = useState<QuizQuestion[]>([])
@@ -49,7 +51,7 @@ function App() {
   if (!isStarted) {
     return (
       <div className="app">
-        
+        <VersionDisplay version={APP_CONFIG.version} />
         <QuizUploader onQuestionsLoaded={handleQuestionsLoaded} />
         <SettingsModal isOpen={isSettingsOpen} settings={settings} onSettingsChange={updateSettings} onClose={() => setIsSettingsOpen(false)} />
       </div>
@@ -58,6 +60,7 @@ function App() {
 
   return (
     <div className="app">
+      <VersionDisplay version={APP_CONFIG.version} />
       <div className="app-container">
         <Quiz
           questions={questions}

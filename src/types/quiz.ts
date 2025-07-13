@@ -13,6 +13,7 @@ export interface QuizQuestion {
   question_no: number;
   zh: QuizContent;
   en: QuizContent;
+  cn: QuizContent; // 可選的中文內容
   isControversial?: boolean; // 是否為爭議題目
 }
 

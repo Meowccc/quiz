@@ -50,7 +50,7 @@ export function SettingsModal({ isOpen, settings, onSettingsChange, onClose }: S
         </div>
         
         <div className="settings-modal-content">
-          <div className="setting-item">
+          {/* <div className="setting-item">
             <label className="setting-label">
               <input
                 type="checkbox"
@@ -62,7 +62,7 @@ export function SettingsModal({ isOpen, settings, onSettingsChange, onClose }: S
             <p className="setting-description">
               題目和選項會隨機排序
             </p>
-          </div>
+          </div> */}
 
           <div className="setting-item">
             <label className="setting-label">
