@@ -53,7 +53,12 @@
   align-items: center;
   gap: 12px;
   margin-bottom: 1.5rem;
-  justify-content: space-between;
+}
+
+.question-number-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .question-number {
@@ -77,7 +82,6 @@
   line-height: 1.6;
   color: #333;
   margin: 0;
-  text-align: left;
 }
 
 .options-container {
@@ -132,7 +136,6 @@
   flex: 1;
   line-height: 1.5;
   color: #333;
-  text-align: left;
 }
 
 .correct-indicator {
@@ -194,4 +197,15 @@
   color: #666;
   line-height: 1.6;
   margin: 0;
-} 
+}
+
+.controversial-icon {
+  font-size: 1.2rem;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+  transition: transform 0.2s;
+}
+
+.controversial-icon:hover {
+  transform: scale(1.2);
+}

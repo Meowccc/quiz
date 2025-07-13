@@ -2,11 +2,16 @@ import './QuestionMissing.css';
 
 interface QuestionMissingProps {
   questionNo: number;
-  language: 'zh' | 'en';
+  language: 'zh' | 'en' | 'cn';
 }
 
 export function QuestionMissing({ questionNo, language }: QuestionMissingProps) {
   const messages = {
+    cn:{
+        title: '题目缺失',
+        description: '此题目目前没有内容，请选择其他题目。',
+        backButton: '返回题目列表'
+    },
     zh: {
       title: '題目從缺',
       description: '此題目目前沒有內容，請選擇其他題目。',

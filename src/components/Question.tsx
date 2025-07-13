@@ -11,6 +11,7 @@ interface QuestionProps {
   showAnswer?: boolean;
   userAnswer?: string[];
   isAnswered?: boolean;
+  isControversial?: boolean;
   languageSwitcher?: any;
 }
 
@@ -22,6 +23,7 @@ export function Question({
   showAnswer = false,
   userAnswer = [],
   isAnswered = false,
+  isControversial = false,
   languageSwitcher,
 }: QuestionProps) {
   const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
@@ -78,11 +80,28 @@ export function Question({
     }
   };
 
+  // 處理爭議題目圖示點擊
+  const handleControversialClick = () => {
+    alert('此為爭議題');
+  };
+
   return (
     <div className="question-container">
       <div className="question-header">
-        <span className="question-number">題目 {questionNo}</span>
-        
+        <div>
+          <span className="question-number">題目 {questionNo}</span>
+          {isControversial && (
+              <span
+                  className="controversial-icon"
+                  title="爭議題目"
+                  onClick={handleControversialClick}
+              >
+            ⚠️
+          </span>
+          )}
+        </div>
+
+
         {languageSwitcher}
       </div>
 
@@ -94,7 +113,7 @@ export function Question({
         {shuffledOptions.map((option) => {
           const optionKey = Object.keys(option)[0];
           const optionValue = Object.values(option)[0];
-
+          
           return (
             <div
               key={optionKey}
@@ -115,6 +134,7 @@ export function Question({
           );
         })}
       </div>
+
       {isMultipleChoice && (
           <span className="multiple-choice-hint">（多選題）</span>
         )}
@@ -122,7 +142,6 @@ export function Question({
 
         <GenericButton onClick={handleSubmit} text="確認答案" color="primary" />
       )}
-
 
       {showAnswer && (
         <div className="answer-section">
@@ -132,7 +151,6 @@ export function Question({
           </div>
         </div>
       )}
-      
     </div>
   );
 } 

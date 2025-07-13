@@ -13,19 +13,19 @@ export function LanguageSwitcher({ currentLanguage, onLanguageChange }: Language
         className={`language-btn ${currentLanguage === 'cn' ? 'active' : ''}`}
         onClick={() => onLanguageChange('cn')}
       >
-        簡體
+        簡
       </button>
       <button
         className={`language-btn ${currentLanguage === 'zh' ? 'active' : ''}`}
         onClick={() => onLanguageChange('zh')}
       >
-        中文
+        繁
       </button>
       <button
         className={`language-btn ${currentLanguage === 'en' ? 'active' : ''}`}
         onClick={() => onLanguageChange('en')}
       >
-        English
+        英
       </button>
     </div>
   );

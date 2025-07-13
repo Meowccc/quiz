@@ -158,6 +158,7 @@ export function Quiz({
           showAnswer={shouldShowAnswer}
           userAnswer={currentUserAnswer?.selectedAnswers || []}
           isAnswered={isCurrentQuestionAnswered}
+          isControversial={currentQuestion?.isControversial}
           languageSwitcher={
             <LanguageSwitcher
               currentLanguage={settings.language}
