@@ -15,7 +15,7 @@ export interface QuizQuestion {
   en: QuizContent;
 }
 
-export type Language = 'zh' | 'en';
+export type Language = 'zh' | 'en' | 'cn';
 
 export interface QuizSettings {
   language: Language;

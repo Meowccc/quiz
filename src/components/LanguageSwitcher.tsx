@@ -9,6 +9,12 @@ interface LanguageSwitcherProps {
 export function LanguageSwitcher({ currentLanguage, onLanguageChange }: LanguageSwitcherProps) {
   return (
     <div className="language-switcher">
+            <button
+        className={`language-btn ${currentLanguage === 'cn' ? 'active' : ''}`}
+        onClick={() => onLanguageChange('cn')}
+      >
+        簡體
+      </button>
       <button
         className={`language-btn ${currentLanguage === 'zh' ? 'active' : ''}`}
         onClick={() => onLanguageChange('zh')}

@@ -82,9 +82,7 @@ export function Question({
     <div className="question-container">
       <div className="question-header">
         <span className="question-number">題目 {questionNo}</span>
-        {isMultipleChoice && (
-          <span className="multiple-choice-hint">（多選題）</span>
-        )}
+        
         {languageSwitcher}
       </div>
 
@@ -117,7 +115,9 @@ export function Question({
           );
         })}
       </div>
-
+      {isMultipleChoice && (
+          <span className="multiple-choice-hint">（多選題）</span>
+        )}
       {!isAnswered && (
 
         <GenericButton onClick={handleSubmit} text="確認答案" color="primary" />
