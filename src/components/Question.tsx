@@ -52,7 +52,9 @@ export function Question({
   const handleSubmit = () => {
     if (selectedAnswers.length > 0) {
       onAnswer(selectedAnswers);
-      handleControversialClick();
+      if (isControversial) {
+        handleControversialClick();
+      }
     }
   };
 
@@ -139,10 +141,7 @@ export function Question({
       {isMultipleChoice && (
           <span className="multiple-choice-hint">（多選題）</span>
         )}
-      {!isAnswered && (
-
-        <GenericButton onClick={handleSubmit} text="確認答案" color="primary" />
-      )}
+      <GenericButton onClick={handleSubmit} text="確認答案" color="primary" disabled={isAnswered} />
 
       {showAnswer && content?.explanation && (
         <div className="answer-section">
