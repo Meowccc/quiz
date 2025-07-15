@@ -30,7 +30,7 @@ export function Option({
 
   // 檢查選項是否被用戶選擇
   const isOptionSelected = (optionKey: string) => {
-    console.log('isOptionSelected: ', optionKey, showAnswer, userAnswer, selectedAnswers);
+    // console.log('isOptionSelected: ', optionKey, showAnswer, userAnswer, selectedAnswers);
     return selectedAnswers.includes(optionKey);
   };
 

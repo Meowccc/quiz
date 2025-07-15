@@ -52,6 +52,8 @@ export function Question({
   const handleSubmit = () => {
     if (selectedAnswers.length > 0) {
       onAnswer(selectedAnswers);
+      // clear selectedAnswers
+      setSelectedAnswers([]);
       if (isControversial) {
         handleControversialClick();
       }
@@ -106,8 +108,13 @@ export function Question({
 
 
         {languageSwitcher}
+        
       </div>
-
+      <div>
+        {/* <button>test</button> */}
+        test:{userAnswer}
+      </div>
+      
       <div className="question-content">
         <h3 className="question-text">{content.question}</h3>
       </div>
@@ -116,7 +123,6 @@ export function Question({
         {shuffledOptions.map((option) => {
           const optionKey = Object.keys(option)[0];
           const optionValue = Object.values(option)[0];
-          
           return (
             <div
               key={optionKey}

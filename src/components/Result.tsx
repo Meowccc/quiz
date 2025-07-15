@@ -1,6 +1,8 @@
 import type { UserAnswer, QuizQuestion, Language } from '../types/quiz';
 import './Result.css';
 import { Option } from './Option';
+import { useState } from 'react';
+import { GenericButton } from './GenericButton';
 
 interface ResultProps {
   userAnswers: UserAnswer[];
@@ -37,6 +39,7 @@ export function Result({
     }
     return `${remainingSeconds}秒`;
   };
+  const [showError, setShowError] = useState<Boolean>(false);
 
   const getQuestionContent = (question: QuizQuestion) => {
     return question[language];
@@ -70,6 +73,11 @@ export function Result({
         <button className="restart-btn" onClick={onRestart}>
           重新開始
         </button>
+        <GenericButton
+          color={showError ? 'success' : 'danger'}
+          onClick={() => setShowError(e => !e)}
+          text={showError ? '顯示全部' : '顯示錯誤'}
+        />
       </div>
 
       <div className="questions-review">
@@ -80,11 +88,13 @@ export function Result({
               answer => answer.questionNo === question.question_no
             );
             const content = getQuestionContent(question);
-            console.log('userAnswer: ', userAnswer);
-            console.log('content: ', content);
             const isCorrect = userAnswer?.isCorrect ?? false;
 
-            console.log('show question: ', question);
+            if (showError && isCorrect) {
+              console.log('question: ', question.question_no);
+              return <></>;
+            } 
+
             return (
               <div
                 key={question.question_no}
