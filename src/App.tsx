@@ -34,10 +34,12 @@ function App() {
     completeQuiz
   } = useQuiz()
 
-  const handleQuestionsLoaded = (newQuestions: QuizQuestion[]) => {
+  const handleQuestionsLoaded = (fileName: string, newQuestions: QuizQuestion[]) => {
     // setInitQuestions(newQuestions)
     loadQuestions(newQuestions)
     setIsStarted(true)
+    // set as local storage
+    localStorage.setItem(`quiz-${fileName}`, JSON.stringify(newQuestions))
   }
 
   const handleRestart = () => {

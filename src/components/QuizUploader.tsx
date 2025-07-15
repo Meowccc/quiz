@@ -1,14 +1,45 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import type { QuizQuestion } from '../types/quiz';
 import './QuizUploader.css';
 
 interface QuizUploaderProps {
-  onQuestionsLoaded: (questions: QuizQuestion[]) => void;
+  onQuestionsLoaded: (fileName: string, questions: QuizQuestion[]) => void;
 }
 
 export function QuizUploader({ onQuestionsLoaded }: QuizUploaderProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [uploadedFiles, setUploadedFiles] = useState<string[]>([]);
+
+  // 掃描 localStorage 取得所有已上傳的題庫檔案
+  useEffect(() => {
+    const files: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith('quiz-')) {
+        files.push(key.replace('quiz-', ''));
+      }
+    }
+    setUploadedFiles(files);
+  }, []);
+
+  // 點選清單直接載入題庫
+  const handleSelectFile = (fileName: string) => {
+    const data = localStorage.getItem(`quiz-${fileName}`);
+    if (!data) return;
+    try {
+      const questions: QuizQuestion[] = JSON.parse(data);
+      onQuestionsLoaded(fileName, questions);
+    } catch (err) {
+      setError('載入本地檔案失敗');
+    }
+  };
+
+  // 刪除已上傳題庫
+  const handleDeleteFile = (fileName: string) => {
+    localStorage.removeItem(`quiz-${fileName}`);
+    setUploadedFiles(files => files.filter(f => f !== fileName));
+  };
 
   const handleFileUpload = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -38,7 +69,9 @@ export function QuizUploader({ onQuestionsLoaded }: QuizUploaderProps) {
         }
       }
 
-      onQuestionsLoaded(questions);
+      // get file name
+      const fileName = file.name;
+      onQuestionsLoaded(fileName, questions);
     } catch (err) {
       setError(err instanceof Error ? err.message : '載入檔案失敗');
     } finally {
@@ -69,6 +102,22 @@ export function QuizUploader({ onQuestionsLoaded }: QuizUploaderProps) {
         {error && (
           <div className="error-message">
             {error}
+          </div>
+        )}
+
+        {uploadedFiles.length > 0 && (
+          <div className="uploaded-files-list">
+            <h4>已上傳題庫：</h4>
+            <ul>
+              {uploadedFiles.map(file => (
+                <li key={file} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <button className="uploaded-file-btn" type="button" onClick={() => handleSelectFile(file)}>
+                    {file}
+                  </button>
+                  <button className="delete-file-btn" type="button" onClick={() => handleDeleteFile(file)} title="刪除題庫">🗑️</button>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 
