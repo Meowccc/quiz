@@ -9,17 +9,17 @@ export function QuestionMissing({ questionNo, language }: QuestionMissingProps) 
   const messages = {
     cn:{
         title: '题目缺失',
-        description: '此题目目前没有内容，请选择其他题目。',
+        description: '此题目目前没有内容，请参考题库内容。',
         backButton: '返回题目列表'
     },
     zh: {
       title: '題目從缺',
-      description: '此題目目前沒有內容，請選擇其他題目。',
+      description: '此題目目前沒有內容，請參考題庫內容。',
       backButton: '返回題目列表'
     },
     en: {
       title: 'Question Missing',
-      description: 'This question has no content. Please select another question.',
+      description: 'This question has no content. Please refer to the question bank.',
       backButton: 'Back to Questions'
     }
   };
