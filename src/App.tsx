@@ -7,10 +7,14 @@ import './App.css'
 import { SettingsModal } from './components/SettingsModal'
 import { VersionDisplay } from './components/VersionDisplay'
 import { APP_CONFIG } from './config/app'
+import { checkEntryQuizPassed } from './components/EntryQuiz';
+import Modal from './components/common/Modal'
+import EntryQuiz from './components/EntryQuiz'
 
 function App() {
   // const [initQuestions, setInitQuestions] = useState<QuizQuestion[]>([])
   const [isStarted, setIsStarted] = useState(false)
+  const [entryPassed, setEntryPassed] = useState(() => checkEntryQuizPassed());
 
   const {
     questions,
@@ -49,6 +53,18 @@ function App() {
   }
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(true);
+
+  if (!entryPassed) {
+    return (
+      <div className="app">
+        {/* <VersionDisplay version={APP_CONFIG.version} /> */}
+        <Modal>
+          <EntryQuiz isOpen={!entryPassed} onPassed={() => setEntryPassed(true)} />
+        </Modal>
+        {/* <SettingsModal isOpen={isSettingsOpen} settings={settings} onSettingsChange={updateSettings} onClose={() => setIsSettingsOpen(false)} /> */}
+      </div>
+    )
+  }
 
   if (!isStarted) {
     return (

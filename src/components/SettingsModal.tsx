@@ -50,19 +50,6 @@ export function SettingsModal({ isOpen, settings, onSettingsChange, onClose }: S
         </div>
         
         <div className="settings-modal-content">
-          {/* <div className="setting-item">
-            <label className="setting-label">
-              <input
-                type="checkbox"
-                checked={settings.randomOrder}
-                onChange={(e) => onSettingsChange({ randomOrder: e.target.checked })}
-              />
-              <span>隨機順序作答  </span> <span style={{color: 'red' }}>(TODO 還沒修正)</span>
-            </label>
-            <p className="setting-description">
-              題目和選項會隨機排序
-            </p>
-          </div> */}
 
           <div className="setting-item">
             <label className="setting-label">
