@@ -14,7 +14,6 @@ async function sha256(str: string): Promise<string> {
 }
 
 export function checkEntryQuizPassed(): boolean {
-    console.log('checkEntryQuizPassed: ', localStorage.getItem(LOCALSTORAGE_KEY));
     return localStorage.getItem(LOCALSTORAGE_KEY) === entryQuestions.map(q => q.answerHash).join(',');
 }
 
