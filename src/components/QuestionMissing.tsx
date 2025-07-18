@@ -33,11 +33,7 @@ export function QuestionMissing({ questionNo, language }: QuestionMissingProps) 
       <p className="missing-description">
         題目 {questionNo} - {message.description}
       </p>
-      <div className="missing-actions">
-        <button className="missing-btn">
-          {message.backButton}
-        </button>
-      </div>
+
     </div>
   );
 } 
