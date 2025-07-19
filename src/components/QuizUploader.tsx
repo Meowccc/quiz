@@ -1,6 +1,7 @@
 import { useCallback, useState, useEffect } from 'react';
 import type { QuizQuestion } from '../types/quiz';
 import './QuizUploader.css';
+import CoffeeButton from './common/CoffeeButton';
 
 interface QuizUploaderProps {
   onQuestionsLoaded: (fileName: string, questions: QuizQuestion[]) => void;
@@ -126,33 +127,26 @@ export function QuizUploader({ onQuestionsLoaded }: QuizUploaderProps) {
           <pre className="json-example">
 {`[
   {
-    "question_no": 194,
+    "question_no": 1,
     "zh": {
       "question": "金融公司使用 AWS 來部署生成式 AI 模型...",
       "options": [
-        {"A": "Amazon Macie"},
-        {"B": "AWS Artifact"},
-        {"C": "AWS Secrets Manager"},
-        {"D": "AWS Config"}
+        {"A": "選項A"},
+        {"B": "選項B"},
+        {"C": "選項C"},
+        {"D": "選項D"}
       ],
       "answers": ["B"],
       "explanation": "AWS Artifact 提供隨選存取..."
     },
-    "en": {
-      "question": "A financial company uses AWS...",
-      "options": [
-        {"A": "Amazon Macie"},
-        {"B": "AWS Artifact"},
-        {"C": "AWS Secrets Manager"},
-        {"D": "AWS Config"}
-      ],
-      "answers": ["B"],
-      "explanation": "AWS Artifact provides on-demand access..."
-    }
+    "en": {},
+    "cn": {}
   }
 ]`}
           </pre>
         </div>
+
+        <CoffeeButton />
       </div>
     </div>
   );
