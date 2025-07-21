@@ -1,6 +1,7 @@
 .text-input {
-    width: 100%;
-    padding: 8px;
+    max-width: 100%;
+    width: 150px;
+    padding: 8px 4px;
     border-radius: 4px;
     border: 2px solid #ccc;
     background-color: #fff;

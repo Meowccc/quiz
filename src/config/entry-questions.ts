@@ -11,7 +11,7 @@ export const entryQuestions: EntryQuestion[] = [
   // 範例題目，請自行填寫
   {
     id: 1,
-    question: "我領導是誰",
+    question: "我的領導是誰(英文名)",
     type: "input",
     answerHash: "58dd8d36b5258fc559b2ab0cb0ad7097a4302dde3ddabfedd9aec0138111601e",
   }
