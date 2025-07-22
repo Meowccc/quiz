@@ -7,12 +7,10 @@ import './App.css'
 import { SettingsModal } from './components/SettingsModal'
 import { VersionDisplay } from './components/VersionDisplay'
 import { APP_CONFIG } from './config/app'
-import { checkEntryQuizPassed } from './components/EntryQuiz';
 
 function App() {
   // const [initQuestions, setInitQuestions] = useState<QuizQuestion[]>([])
   const [isStarted, setIsStarted] = useState(false)
-  const [entryPassed, setEntryPassed] = useState(() => checkEntryQuizPassed());
 
   const {
     questions,
